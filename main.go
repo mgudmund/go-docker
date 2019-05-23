@@ -20,6 +20,7 @@ func main() {
    e := echo.New()
    e.Use(middleware.Logger())
    e.Use(middleware.Recover())
+   // test comment
    // Routes
    e.GET("/go-docker",  goWithDocker)
    e.Logger.Fatal(e.Start(":8080"))
