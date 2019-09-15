@@ -1,4 +1,3 @@
-#s
 name: Golang
 on: [push]
 jobs:
