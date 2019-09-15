@@ -1,5 +1,5 @@
 #s
-name: Go
+name: Golang
 on: [push]
 jobs:
 
