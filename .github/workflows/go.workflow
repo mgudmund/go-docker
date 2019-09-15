@@ -1,3 +1,4 @@
+#s
 name: Go
 on: [push]
 jobs:
