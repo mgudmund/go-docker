@@ -30,4 +30,9 @@ jobs:
     - name: Docker Build
       run: docker build .
       
+  publish:
+    needs: [build]
+    steps:
+    - uses: actions/github-packages@master
+      
      
