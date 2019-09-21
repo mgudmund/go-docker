@@ -1,31 +1,20 @@
 package main
-
+ 
 import (
-   "fmt"
-   "github.com/labstack/echo"
-   "github.com/labstack/echo/middleware"
-   "github.com/sirupsen/logrus"
-   "net/http"
+    "fmt"
+    "html"
+    "log"
+    "net/http"
+ 
+    "github.com/gorilla/mux"
 )
-var log =logrus.New()
-
-func init() {
-   log.Formatter = new(logrus.JSONFormatter)
-   log.Formatter = new(logrus.TextFormatter) // default
-   log.Level = logrus.DebugLevel
-}
-
+ 
 func main() {
-   fmt.Println("Main function :")
-   e := echo.New()
-   e.Use(middleware.Logger())
-   e.Use(middleware.Recover())
-   // test comment
-   // Routes
-   e.GET("/go-docker",  goWithDocker)
-   e.Logger.Fatal(e.Start(":8080"))
+ 
+    router := mux.NewRouter().StrictSlash(true)
+    router.HandleFunc("/", Index)
+    log.Fatal(http.ListenAndServe(":8080", router))
 }
-
-func goWithDocker(c echo.Context)error{
- return c.JSON(http.StatusOK, "Go with Docker Container")
-}
+ 
+func Index(w http.ResponseWriter, r *http.Request) {
+    fmt.Fprintf(w, "Hello, %q", html.EscapeString(r.URL.Path))
