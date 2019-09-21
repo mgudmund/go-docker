@@ -24,5 +24,10 @@ jobs:
             dep ensure
         fi
 
-    - name: Build
+    - name: Go Build
       run: go build -v .
+    
+    - name: Docker Build
+      run: docker build .
+      
+     
