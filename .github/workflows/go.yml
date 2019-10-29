@@ -54,7 +54,7 @@ jobs:
         # If we were running the job on the VM this would be localhost
         POSTGRES_HOST: clair-vulnerabilities-db
         POSTGRES_PORT: ${{ job.services.clair-vulnerabilities-db.ports[5432] }}
-        CI_APPLICATION_REPOSITORY: registry.gitlab.com/gitlab-org/security-products/analyzers/klar:1
+        CI_APPLICATION_REPOSITORY: postgres:latest
         IMAGE: registry.gitlab.com/gitlab-org/security-products/analyzers/klar:1
     - run: cat gl-container-scanning-report.json
   #publish:
