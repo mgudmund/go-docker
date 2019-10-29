@@ -30,11 +30,33 @@ jobs:
     
     - name: Docker Build
       run: docker build .
-      
-  publish:
-    needs: [build]
-    runs-on: ubuntu-latest
+  
+  container:
+      image:  registry.gitlab.com/gitlab-org/security-products/analyzers/klar:1
+      options: --link postgres
+   
+    services:
+      postgres:
+        image: arminc/clair-db:latest
+        ports:
+        - 5432:5432
+        # needed because the postgres container does not provide a healthcheck
+        options: --name postgres --health-cmd pg_isready --health-interval 10s --health-timeout 5s --health-retries 5
+
     steps:
-    - uses: actions/github-packages@master
+    - uses: actions/checkout@v1     
+    - run: /container-scanner/start.sh
+      working-directory: ./postgres
+      env:
+        # use postgres for the host here because we have specified a container for the job.
+        # If we were running the job on the VM this would be localhost
+        POSTGRES_HOST: postgres
+        POSTGRES_PORT: ${{ job.services.postgres.ports[5432] }}
+    - run: cat gl-container-scanning-report.json
+  #publish:
+  #  needs: [build]
+  #  runs-on: ubuntu-latest
+  #  steps:
+  #  - uses: actions/github-packages@master
       
      
