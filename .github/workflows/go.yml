@@ -31,6 +31,8 @@ jobs:
     - name: Docker Build
       run: docker build .
   scan:
+    name: scan
+    runs-on: ubuntu-latest
     container:
       image: registry.gitlab.com/gitlab-org/security-products/analyzers/klar:1
       options: --link postgres
@@ -51,6 +53,7 @@ jobs:
         # If we were running the job on the VM this would be localhost
         POSTGRES_HOST: postgres
         POSTGRES_PORT: ${{ job.services.postgres.ports[5432] }}
+        IMAGE: registry.gitlab.com/gitlab-org/security-products/analyzers/klar:1
     - run: cat gl-container-scanning-report.json
   #publish:
   #  needs: [build]
