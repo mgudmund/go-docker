@@ -32,7 +32,7 @@ jobs:
       run: docker build .
   
   container:
-      image:  registry.gitlab.com/gitlab-org/security-products/analyzers/klar:1
+      image:  docker://egistry.gitlab.com/gitlab-org/security-products/analyzers/klar:1
       options: --link postgres
     services:
       postgres:
