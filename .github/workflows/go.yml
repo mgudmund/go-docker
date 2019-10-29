@@ -57,7 +57,7 @@ jobs:
         CI_APPLICATION_REPOSITORY: postgres
         #CI_PROJECT_DIR: /home/runner
         CI_APPLICATION_TAG: latest
-    - run: cat gl-container-scanning-report.json
+    - run: cat /gl-container-scanning-report.json
   #publish:
   #  needs: [build]
   #  runs-on: ubuntu-latest
