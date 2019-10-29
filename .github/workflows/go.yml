@@ -34,7 +34,6 @@ jobs:
   container:
       image:  registry.gitlab.com/gitlab-org/security-products/analyzers/klar:1
       options: --link postgres
-   
     services:
       postgres:
         image: arminc/clair-db:latest
