@@ -34,7 +34,7 @@ jobs:
       #run: docker tag docker.pkg.github.com/$GITHUB_REPOSITORY:$GITHUB_SHA
       uses: elgohr/Publish-Docker-Github-Action@master
       with:
-        name: $GITHUB_REPOSITORY:$GITHUB_SHA
+        name: mgudmund/go-docker/go-docker:${GITHUB_SHA}
         username: mgudmund
         password: ${{ secrets.GITHUB_TOKEN }}
         registry: docker.pkg.github.com
