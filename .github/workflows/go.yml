@@ -28,8 +28,16 @@ jobs:
     - name: Go Build
       run: go build -v .
     
-    - name: Docker Build
-      run: docker build .
+    # - name: Docker Build
+    #   run: docker build .
+    - name: Docker Build & Push
+      #run: docker tag docker.pkg.github.com/$GITHUB_REPOSITORY:$GITHUB_SHA
+      uses: elgohr/Publish-Docker-Github-Action@master
+      with:
+        name: $GITHUB_REPOSITORY:$GITHUB_SHA
+        username: mgudmund
+        password: ${{ secrets.GITHUB_TOKEN }}
+        registry: docker.pkg.github.com
     - name: env
       run: env      
   scan:
@@ -54,20 +62,20 @@ jobs:
         # If we were running the job on the VM this would be localhost
         POSTGRES_HOST: clair-vulnerabilities-db
         POSTGRES_PORT: ${{ job.services.clair-vulnerabilities-db.ports[5432] }}
-        CI_APPLICATION_REPOSITORY: postgres
+        CI_APPLICATION_REPOSITORY: docker.pkg.github.com/$GITHUB_REPOSITORY
         #CI_PROJECT_DIR: /home/runner
-        CI_APPLICATION_TAG: latest
+        CI_APPLICATION_TAG: $GITHUB_SHA
     - run: cat /gl-container-scanning-report.json
     - run: env
-  publish:
-    needs: [build]
-    runs-on: ubuntu-latest
-    steps:
-    - uses: elgohr/Publish-Docker-Github-Action@master
-      with:
-        name: mgudmund/go-docker/go-dcoker:latest
-        username: mgudmund
-        password: ${{ secrets.GITHUB_TOKEN }}
-        registry: docker.pkg.github.com
+  # publish:
+  #   needs: [build]
+  #   runs-on: ubuntu-latest
+  #   steps:
+  #   - uses: elgohr/Publish-Docker-Github-Action@master
+  #     with:
+  #       name: mgudmund/go-docker/go-docker:latest
+  #       username: mgudmund
+  #       password: ${{ secrets.GITHUB_TOKEN }}
+  #       registry: docker.pkg.github.com
       
      
