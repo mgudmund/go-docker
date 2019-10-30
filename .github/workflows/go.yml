@@ -1,7 +1,5 @@
 name: Go
 on: [push]
-env: 
-  BRANCH: ${{ echo $GITHUB_REF|cut -d'/' -f 3 }}
 jobs:
 
   build:
@@ -61,10 +59,15 @@ jobs:
         CI_APPLICATION_TAG: latest
     - run: cat /gl-container-scanning-report.json
     - run: env
-  #publish:
-  #  needs: [build]
-  #  runs-on: ubuntu-latest
-  #  steps:
-  #  - uses: actions/github-packages@master
+  publish:
+    needs: [build]
+    runs-on: ubuntu-latest
+    steps:
+    - uses: elgohr/Publish-Docker-Github-Action@master
+      with:
+        name: mgudmund/go-docker/go-dcoker:latest
+        username: mgudmund
+        password: ${{ secrets.GITHUB_TOKEN }}
+        registry: docker.pkg.github.com
       
      
