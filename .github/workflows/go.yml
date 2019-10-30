@@ -34,7 +34,7 @@ jobs:
       #run: docker tag docker.pkg.github.com/$GITHUB_REPOSITORY:$GITHUB_SHA
       uses: elgohr/Publish-Docker-Github-Action@master
       with:
-        name: mgudmund/go-docker/go-docker:${{ GITHUB_SHA }}
+        name: mgudmund/go-docker/go-docker:latest
         username: mgudmund
         password: ${{ secrets.GITHUB_TOKEN }}
         registry: docker.pkg.github.com
@@ -62,9 +62,9 @@ jobs:
         # If we were running the job on the VM this would be localhost
         POSTGRES_HOST: clair-vulnerabilities-db
         POSTGRES_PORT: ${{ job.services.clair-vulnerabilities-db.ports[5432] }}
-        CI_APPLICATION_REPOSITORY: docker.pkg.github.com/$GITHUB_REPOSITORY
+        CI_APPLICATION_REPOSITORY: docker.pkg.github.com/mgudmund/go-docker/go-docker
         #CI_PROJECT_DIR: /home/runner
-        CI_APPLICATION_TAG: $GITHUB_SHA
+        CI_APPLICATION_TAG: latest
     - run: cat /gl-container-scanning-report.json
     - run: env
   # publish:
