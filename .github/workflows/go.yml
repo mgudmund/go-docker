@@ -61,6 +61,6 @@ jobs:
         CI_APPLICATION_REPOSITORY: docker.pkg.github.com/mgudmund/go-docker/go-docker
         CI_APPLICATION_TAG: latest
         DOCKER_USERNAME: mgudmund
-        DOCKER_PASSWORD: $GITHUB_TOKEN
+        DOCKER_PASSWORD: ${{ secrets.GITHUB_TOKEN }}
     - run: cat /gl-container-scanning-report.json
  
