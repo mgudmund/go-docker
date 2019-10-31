@@ -58,7 +58,7 @@ jobs:
         # If we were running the job on the VM this would be localhost
         POSTGRES_HOST: clair-vulnerabilities-db
         POSTGRES_PORT: ${{ job.services.clair-vulnerabilities-db.ports[5432] }}
-        CI_APPLICATION_REPOSITORY: docker.pkg.github.com/mgudmund/go-docker/go-docker
+        CI_APPLICATION_REPOSITORY: mgudmund:${{ secrets.GITHUB_TOKEN }}@docker.pkg.github.com/mgudmund/go-docker/go-docker
         CI_APPLICATION_TAG: latest
         #DOCKER_USERNAME: mgudmund
         #DOCKER_PASSWORD: ${{ secrets.GITHUB_TOKEN }}
