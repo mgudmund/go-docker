@@ -1,5 +1,7 @@
 name: Go
 on: [push]
+env:
+  BRANCH: `echo $GITHUB_REF|cut -d/ -f 3`
 jobs:
 
   build:
