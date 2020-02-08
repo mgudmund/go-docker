@@ -1,6 +1,7 @@
 name: Go Matrix
-on: [push]
- branches:
+on:
+ push:
+  branches:
       - prod
       - staging
       - develop
