@@ -15,14 +15,14 @@ jobs:
         org: [prod, staging, develop] #Array of org mnemonics to use below
         include:
           # includes a new variable for each org (this is effectively a switch statement) 
-          - org: prod
+         - org: prod
            username: PROD_USERNAME
          - org: staging
-            username: STAGING_USERNAME
+           username: STAGING_USERNAME
          - org: develop
-            username: STAGING_USERNAME
-     steps:
+           username: STAGING_USERNAME
+    steps:
       - name: Print a greeting
-      run: |
-        echo ${{ secrets[matrix.username] }}
+        run: |
+          echo ${{ secrets[matrix.username] }};
 
