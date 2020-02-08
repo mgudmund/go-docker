@@ -1,0 +1,27 @@
+name: Go Matrix
+on: [push]
+ branches:
+      - prod
+      - staging
+      - develop
+
+jobs:
+  build:
+    name: Build
+    runs-on: ubuntu-latest
+    strategy:
+      matrix:
+        org: [prod, staging, develop] #Array of org mnemonics to use below
+        include:
+          # includes a new variable for each org (this is effectively a switch statement) 
+          - org: prod
+           username: PROD_USERNAME
+         - org: staging
+            username: STAGING_USERNAME
+         - org: develop
+            username: STAGING_USERNAME
+     steps:
+      - name: Print a greeting
+      run: |
+        echo ${{ secrets[matrix.username] }}
+
