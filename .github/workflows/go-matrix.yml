@@ -24,5 +24,6 @@ jobs:
     steps:
       - name: Print a greeting
         run: |
-          echo ${{ secrets[matrix.username] }};
+          echo ${{ matrix.username }} ;
+          echo ${{ secrets[matrix.username] }} ;
 
