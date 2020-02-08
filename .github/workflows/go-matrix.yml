@@ -21,8 +21,10 @@ jobs:
            username: STAGING_USERNAME
          - org: develop
            username: DEVELOP_USERNAME
+    
     steps:
-      - name: Print a greeting
+      - name: Print secret
+        if: endsWith(github.event.ref, matrix.org)
         run: |
           echo ${{ secrets[matrix.username] }};
 
