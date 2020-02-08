@@ -22,7 +22,7 @@ jobs:
          - org: develop
            username: DEVELOP_USERNAME
     steps:
-      - name: Print a greeting
+      - name: Print secret
         run: |
           echo ${{ secrets[matrix.username] }};
 
