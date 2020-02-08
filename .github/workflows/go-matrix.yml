@@ -31,6 +31,5 @@ jobs:
         run: |
           echo ${{ secrets[matrix.username] }};
           echo ${{ matrix.runtime }};
-          echo ${{ toJson(matrix) }};
           
 
