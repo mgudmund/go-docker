@@ -17,14 +17,20 @@ jobs:
           # includes a new variable for each org (this is effectively a switch statement) 
          - org: prod
            username: PROD_USERNAME
+           runtime: prod  
          - org: staging
            username: STAGING_USERNAME
+           runtime:  staging
          - org: develop
            username: DEVELOP_USERNAME
+           runtime: develop 
     
     steps:
       - name: Print secret
         if: endsWith(github.event.ref, matrix.org)
         run: |
           echo ${{ secrets[matrix.username] }};
+          echo ${{ matrix.runtime }};
+          echo ${{ toJson(matrix) }};
+          
 
