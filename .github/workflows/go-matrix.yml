@@ -27,7 +27,7 @@ jobs:
     
     steps:
       - name: Print secret
-        if: endsWith(github.event.ref, matrix.org)
+        if: endsWith(github.event.ref, matrix.runtime)
         run: |
           echo ${{ secrets[matrix.username] }};
           echo ${{ matrix.runtime }};
