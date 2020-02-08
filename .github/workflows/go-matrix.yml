@@ -23,6 +23,7 @@ jobs:
            username: DEVELOP_USERNAME
     steps:
       - name: Print secret
+        if: ${GITHUB_REF##*/}  == matrix.org
         run: |
           echo ${{ secrets[matrix.username] }};
 
