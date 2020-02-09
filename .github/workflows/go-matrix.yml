@@ -37,7 +37,8 @@ jobs:
    runs-on: ubuntu-latest
    steps:
      - name: Set Environment
-       run: echo "::set-env name=USERNAME::${GITHUB_REF##*/}_USERNAME"    
+       id: setoutput
+       run: echo "::set-output name=username::${GITHUB_REF##*/}_USERNAME"    
      - name: Print Secret
-       run: echo ${{ secrets[steps.username] }};
+       run: echo ${{ secrets[steps.setoutput.outputs.username] }};
        # w
