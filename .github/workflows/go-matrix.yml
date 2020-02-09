@@ -40,3 +40,4 @@ jobs:
        run: echo "::set-env name=USERNAME::${GITHUB_REF##*/}_USERNAME"    
      - name: Print Secret
        run: echo ${{ secrets[steps.username] }};
+       # w
