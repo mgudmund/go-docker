@@ -14,3 +14,4 @@ WORKDIR $WORK_DIR
 COPY --from=goimage /go/src/go_docker/bin/ .
 ENTRYPOINT /docker/bin/go_docker
 EXPOSE 8080
+#
