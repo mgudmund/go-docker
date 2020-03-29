@@ -1,0 +1,10 @@
+workflow:
+    - deploy
+
+jobs:
+    build:
+        image: golang
+        steps:
+            - install-dependencies: got get
+            - build: go build 
+    
