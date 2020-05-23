@@ -39,7 +39,7 @@ jobs:
             "status": "created",
             "productName": "Go-Docker",
             "capabilityName": "None"
-            }' -v ${{ secrets.metrics_url }}/deployments/
+            }' ${{ secrets.metrics_url }}/deployments/
       
 
    
