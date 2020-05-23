@@ -29,17 +29,17 @@ jobs:
      # Runs a single command using the runners shell
     - name: Create Deployment
       run: |
-         curl -H "Content-Type: application/json" -H 'Authorization: Bearer ${{ secrets.metrics_token }}' -X POST -d '{\
-            "name": "Go-Docker",\
-            "version": "0.0.6",\
-            "statusPage": "none",\
-            "repositoryUrl": ${{ github.repository }},\
-            "commitSha": ${{ github.sha }},\
-            "environment": "Production",\
-            "status": "created",\
-            "productName": "Go-Docker",\
-            "capabilityName": "None"\
-            }' -v ${{ secrets.metrics_url }}/deployments/\
+         curl -H "Content-Type: application/json" -H 'Authorization: Bearer ${{ secrets.metrics_token }}' -X POST -d '{
+            "name": "Go-Docker",
+            "version": "0.0.6",
+            "statusPage": "none",
+            "repositoryUrl": "${{ github.repository }}",
+            "commitSha": "${{ github.sha }}",
+            "environment": "Production",
+            "status": "created",
+            "productName": "Go-Docker",
+            "capabilityName": "None"
+            }' -v ${{ secrets.metrics_url }}/deployments/
       
 
    
